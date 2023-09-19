@@ -1,19 +1,18 @@
 <template>
-    <p class="text-3xl font-bold">{{ $route.params.id }}</p>
-    <div>
+    <p class="text-3xl font-bold">parms id => {{ $route.params.id }}</p>
+    <div >
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
-                <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
+                <img class="rounded-t-lg" :src="`https://source.unsplash.com/random/`" alt="" />
             </a>
             <div class="p-5">
                 <a href="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        Noteworthy technology acquisitions 2021
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
                     </h5>
                 </a>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-                    chronological order.
+                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat tempore sapiente commodi unde mollitia distinctio, odit vel cumque atque amet consequatur quia exercitationem dicta iusto. Dolores nam voluptatibus aut magnam.
                 </p>
                 <a href="#"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -29,6 +28,18 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import axios from 'axios';
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+const items = ref([])
+onMounted( async () => {
+    const url = `https://dummyjson.com/products/${route.params.id}`
+    const response = await axios.get(url)
+    console.log(response.data)
+    items.value = response.data.products
+}) 
+</script>
 
 <style scoped></style>

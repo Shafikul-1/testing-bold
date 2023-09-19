@@ -2,7 +2,7 @@
     <div class="flex flex-wrap">
         <div class="m-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" v-for="item in items.products" :key="item.id">
             <a href="#">
-                <img class="rounded-t-lg" :src="`https://source.unsplash.com/random/300×300?${item.id}`" alt="" />
+                <img class="rounded-t-lg max-h-[10rem] min-w-[100%]" :src="`https://source.unsplash.com/random/300×300?${item.id}`" alt="" />
             </a>
             <div class="p-5">
                 <a href="#">
@@ -34,7 +34,7 @@ const items = ref([])
 onMounted( async () => {
     const url = 'https://dummyjson.com/products'
     const response = await axios.get(url)
-    console.log(response.data)
+    console.log(response.data.products)
     items.value = response.data
 }) 
 </script>
